@@ -1,0 +1,71 @@
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+int main()
+{
+    // Crear la ventana del juego
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Pantalla de Inicio");
+
+    // Fuente para el texto
+    sf::Font font;
+    if (!font.loadFromFile("arial.ttf")) // Asegúrate de tener la fuente en la misma carpeta que el código
+    {
+        std::cerr << "Error cargando la fuente!" << std::endl;
+        return -1;
+    }
+
+    // Título del juego
+    sf::Text title("Mi Juego", font, 50);
+    title.setFillColor(sf::Color::White);
+    title.setStyle(sf::Text::Bold);
+    title.setPosition(250, 100); // Posiciona el título en el centro
+
+    // Texto de la opción "Iniciar Juego"
+    sf::Text startText("Presiona Enter para empezar", font, 30);
+    startText.setFillColor(sf::Color::Green);
+    startText.setPosition(200, 300);
+
+    // Texto de la opción "Salir"
+    sf::Text exitText("Presiona Esc para salir", font, 30);
+    exitText.setFillColor(sf::Color::Red);
+    exitText.setPosition(200, 400);
+
+    // Bucle del juego
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // Cerrar la ventana si se hace clic en el botón de cerrar
+            if (event.type == sf::Event::Closed)
+                window.close();
+
+            // Acciones basadas en la tecla presionada
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Enter)
+                {
+                    std::cout << "Iniciar el juego!" << std::endl;
+                    // Aquí es donde empezarías el juego o cambiarías de pantalla
+                }
+                else if (event.key.code == sf::Keyboard::Escape)
+                {
+                    window.close(); // Cerrar el juego
+                }
+            }
+        }
+
+        // Limpiar la pantalla
+        window.clear();
+
+        // Dibujar los elementos en la pantalla
+        window.draw(title);
+        window.draw(startText);
+        window.draw(exitText);
+
+        // Mostrar la pantalla actualizada
+        window.display();
+    }
+
+    return 0;
+}
