@@ -6,7 +6,7 @@ int main()
     // Crear la ventana del juego
     sf::RenderWindow window(sf::VideoMode(800, 600), "Pantalla de Inicio");
 
-    // Fuente para el texto
+    // Letra para el texto
     sf::Font font;
     if (!font.loadFromFile("arial.ttf")) 
     {
@@ -36,34 +36,34 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            // Si presiona en el botón de cerrar se cierra el juego
+            // Si presiona el botón de cerrar se cierra el juego
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            // Acciones basadas en la tecla presionada
+            // Segun la tecla presionada lo que se hace
             if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::Enter)
                 {
                     std::cout << "Iniciar el juego!" << std::endl;
-                    // Aquí es donde empezarías el juego o cambiarías de pantalla
+                    // Aquí es donde empezaría el juego o cambiaría de pantalla
                 }
                 else if (event.key.code == sf::Keyboard::Escape)
                 {
-                    window.close(); // Cerrar el juego
+                    window.close(); // Cierra el juego
                 }
             }
         }
 
-        // Limpiar la pantalla
+        // Limpia pantalla
         window.clear();
 
-        // Dibujar los elementos en la pantalla
+        // Dibujar los textos en la pantalla
         window.draw(title);
         window.draw(startText);
         window.draw(exitText);
 
-        // Mostrar la pantalla actualizada
+        // Muestra pantalla actualizada
         window.display();
     }
 
