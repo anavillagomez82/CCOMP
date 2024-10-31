@@ -1,0 +1,33 @@
+#pragma once
+#include <SFML/Graphics.hpp>
+using namespace sf;
+
+class Player {
+public:
+    Player(Vector2f position) {
+        playerShape.setRadius(15.0f);
+        playerShape.setPointCount(360);
+        playerShape.setOrigin(playerShape.getRadius() / 2, playerShape.getRadius() / 2);
+        playerShape.setPosition(position);
+    }
+
+    void move(Vector2f velocity, float deltaTime) {
+        playerShape.move(velocity * deltaTime);
+    }
+
+    void takeDamage(int amount) {
+        health -= amount;
+        if (health < 0) health = 0;
+    }
+
+    void draw(RenderWindow& window) {
+        window.draw(playerShape);
+    }
+
+    int getHealth() const { return health; }
+    CircleShape getShape() const { return playerShape; }
+
+private:
+    CircleShape playerShape;
+    int health = 100;
+};
